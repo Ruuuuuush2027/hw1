@@ -11,13 +11,37 @@ the function below should be the only one in this file.
 */
 
 #include "split.h"
+#include<cstddef>
 
 /* Add a prototype for a helper function here if you need */
+void insert(Node*& list, int val);
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+    if(in == nullptr)
+        return;
+    
+    if(in->value % 2 == 1)
+        insert(odds, in->value);
+    else
+        insert(evens, in->value);
+    
+    split(in->next, odds, evens);
+    delete in;
+    in = nullptr;
 }
 
 /* If you needed a helper function, write it here */
+void insert(Node*& list, int val){
+    if(list == nullptr){
+        Node* newnode = new Node(val, nullptr);
+        list = newnode;
+    }
+    else if(list->next == nullptr){
+        Node* newnode = new Node(val, nullptr);
+        list->next = newnode;
+    }
+    else{
+        insert(list->next, val);
+    }
+}
