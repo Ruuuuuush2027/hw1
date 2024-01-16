@@ -19,8 +19,18 @@ void printList(Node*& list){
     Node* curr = list;
     while(curr != NULL){
         cout << curr->value << " ";
+        curr = curr->next;
     }
     cout << endl;
+}
+
+void destruct(Node*& list){
+    Node* curr = list;
+    while(curr!=NULL){
+        Node* temp = curr;
+        curr = curr->next;
+        delete temp;
+    }
 }
 
 int main(int argc, char* argv[])
@@ -45,4 +55,6 @@ int main(int argc, char* argv[])
     cout << "evens: ";
     printList(evens);
     
+    destruct(odds);
+    destruct(evens);
 }
