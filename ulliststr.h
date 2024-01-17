@@ -17,6 +17,7 @@ class ULListStr {
      * is fully occupied
      */
     size_t first, last;
+    size_t size;
     Item *prev;
     Item *next;
 
@@ -26,7 +27,14 @@ class ULListStr {
     Item(){
       first = last = 0;
       prev = next = NULL;
+      size = 0;
     }
+
+    // helper functions
+    void addFront(const std::string& e);
+    void addBack(const std::string& e);
+    void removeFront();
+    void removeBack();
   };
 
   /**
